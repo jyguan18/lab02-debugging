@@ -1,5 +1,18 @@
 # lab02-debugging
 
+I worked with Rebecca Waterson and Logan Dooley on this lab.
+[Shadertoy Link](https://www.shadertoy.com/view/WfffWl)
+
+Bug #1: Right off the bat, the program would not load because of a syntax error. Luckily, shadertoy told us where and what the error was. There is no "vec", so I just changed it to "vec2".
+
+Bug #2: The angle looked wrong for what we were viewing - the balls were very large. We realized uv2 was never actually used after being declared so we put it in the raycast() call and the view looked a lot better.
+
+Bug #3: The output looked very stretched out, which kind of implied a raycast error. H was dividing iResolution.x with iResolution.x but it should have been dividing by iResolution.y. Dividing it by itself will always result in 1.0, which is not the correct aspect ratio for when the screen isn't a square.
+
+Bug #4: The background/floor looked like it got cut off. So instead of the ray march stopping at 64, we increased it to 128 and it looked a lot better.
+
+Bug #5: Now clearly there is a reflection error. We checked the normals first and it looked fine. We realized reflect() should not take in eye but instead dir, and that fixed the reflection.
+
 # Setup 
 
 Create a [Shadertoy account](https://www.shadertoy.com/). Either fork this shadertoy, or create a new shadertoy and copy the code from the [Debugging Puzzle](https://www.shadertoy.com/view/flGfRc).
